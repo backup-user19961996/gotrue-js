@@ -114,6 +114,7 @@ class GoTrueClient {
             if (this.initializePromise) {
                 return this.initializePromise;
             }
+            console.log('Gets override');
             try {
                 if (this.detectSessionInUrl &&
                     this._isImplicitGrantFlow() &&
