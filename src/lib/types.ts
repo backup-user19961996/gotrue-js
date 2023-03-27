@@ -23,6 +23,7 @@ export type Provider =
 export type AuthChangeEventMFA = 'MFA_CHALLENGE_VERIFIED'
 
 export type AuthChangeEvent =
+  | 'INITIAL_SESSION'
   | 'PASSWORD_RECOVERY'
   | 'SIGNED_IN'
   | 'SIGNED_OUT'
@@ -161,12 +162,12 @@ export interface AMREntry {
 export interface UserIdentity {
   id: string
   user_id: string
-  identity_data: {
+  identity_data?: {
     [key: string]: any
   }
   provider: string
-  created_at: string
-  last_sign_in_at: string
+  created_at?: string
+  last_sign_in_at?: string
   updated_at?: string
 }
 
