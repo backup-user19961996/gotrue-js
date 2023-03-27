@@ -3,7 +3,7 @@ import { Fetch } from './fetch';
 /** One of the providers supported by GoTrue. */
 export declare type Provider = 'apple' | 'azure' | 'bitbucket' | 'discord' | 'facebook' | 'github' | 'gitlab' | 'google' | 'keycloak' | 'linkedin' | 'notion' | 'slack' | 'spotify' | 'twitch' | 'twitter' | 'workos';
 export declare type AuthChangeEventMFA = 'MFA_CHALLENGE_VERIFIED';
-export declare type AuthChangeEvent = 'PASSWORD_RECOVERY' | 'SIGNED_IN' | 'SIGNED_OUT' | 'TOKEN_REFRESHED' | 'USER_UPDATED' | 'USER_DELETED' | AuthChangeEventMFA;
+export declare type AuthChangeEvent = 'INITIAL_SESSION' | 'PASSWORD_RECOVERY' | 'SIGNED_IN' | 'SIGNED_OUT' | 'TOKEN_REFRESHED' | 'USER_UPDATED' | 'USER_DELETED' | AuthChangeEventMFA;
 export declare type GoTrueClientOptions = {
     url?: string;
     headers?: {
@@ -112,12 +112,12 @@ export interface AMREntry {
 export interface UserIdentity {
     id: string;
     user_id: string;
-    identity_data: {
+    identity_data?: {
         [key: string]: any;
     };
     provider: string;
-    created_at: string;
-    last_sign_in_at: string;
+    created_at?: string;
+    last_sign_in_at?: string;
     updated_at?: string;
 }
 /**

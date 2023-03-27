@@ -217,6 +217,7 @@ export default class GoTrueClient {
             subscription: Subscription;
         };
     };
+    private emitInitialSession;
     /**
      * Sends a password reset request to an email address.
      * @param email The email address of the user.

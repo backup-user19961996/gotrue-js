@@ -114,7 +114,6 @@ class GoTrueClient {
             if (this.initializePromise) {
                 return this.initializePromise;
             }
-            console.log('Gets override');
             try {
                 if (this.detectSessionInUrl &&
                     this._isImplicitGrantFlow() &&
@@ -789,7 +788,23 @@ class GoTrueClient {
             },
         };
         this.stateChangeEmitters.set(id, subscription);
+        this.emitInitialSession(id);
         return { data: { subscription } };
+    }
+    emitInitialSession(id) {
+        var _a, _b;
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                const { data: { session }, error, } = yield this.getSession();
+                if (error)
+                    throw error;
+                (_a = this.stateChangeEmitters.get(id)) === null || _a === void 0 ? void 0 : _a.callback('INITIAL_SESSION', session);
+            }
+            catch (err) {
+                (_b = this.stateChangeEmitters.get(id)) === null || _b === void 0 ? void 0 : _b.callback('INITIAL_SESSION', null);
+                console.error(err);
+            }
+        });
     }
     /**
      * Sends a password reset request to an email address.
